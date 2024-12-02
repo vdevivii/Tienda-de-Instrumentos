@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Dashboard del Administrador</h1>
+        <a href="{{ url_for('add_instrument_route') }}">Añadir Nuevo Instrumento</a>
+        <ul class="product-list">
+            {% for instrument in instruments %}
+            <li  class="product-item">
+                <img src="{{ url_for('static', filename='images/' + instrument['image_url']) }}" alt="{{ instrument.name }}">
+                <h2>{{ instrument.name }}</h2>
+                <p>{{ instrument.description }}</p>
+                <p>{{ instrument.category }}</p>
+                <p>{{ instrument.price }} Bs.</p>
+                <a href="{{ url_for('edit_instrument_route', instrument_id=instrument._id) }}">Editar</a>
+                <form action="{{ url_for('delete_instrument_route', instrument_id=instrument._id) }}" method="POST">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

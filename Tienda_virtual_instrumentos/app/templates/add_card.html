@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Añadir Tarjeta</h1>
+        <form action="{{ url_for('add_card_route') }}" method="POST">
+            <label for="card_number">Número de Tarjeta:</label>
+            <input type="text" name="card_number" id="card_number" required>
+            <label for="expiration_date">Fecha de Expiración:</label>
+            <input type="text" name="expiration_date" id="expiration_date" required>
+            <label for="cvv">CVV:</label>
+            <input type="text" name="cvv" id="cvv" required>
+            <button type="submit">Añadir Tarjeta</button>
+        </form>
+    </div>
+{% endblock %}

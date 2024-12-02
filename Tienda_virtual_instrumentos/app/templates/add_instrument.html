@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Añadir Instrumento</h1>
+        <form action="{{ url_for('add_instrument_route') }}" method="POST">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" required>
+            <label for="description">Descripción:</label>
+            <textarea name="description" required></textarea>
+            <label for="category">Categoría:</label>
+            <input type="text" name="category" required>
+            <label for="price">Precio:</label>
+            <input type="number" name="price" required>
+            <label for="image_url">URL de la Imagen:</label>
+            <input type="text" name="image_url" required>
+            <button type="submit">Añadir</button>
+        </form>
+    </div>
+{% endblock %}

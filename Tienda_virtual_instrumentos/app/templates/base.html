@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>{% block title %}TUNE FACTORY{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">TUNE FACTORY</h1>
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo de la Tienda" class="logo">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('shop') }}">Tienda</a></li>
+                <li><a href="{{ url_for('cart') }}">Carrito</a></li>
+                {% if session.get('role') == 'admin' %}
+                    <li><a href="{{ url_for('admin_dashboard') }}">Administrador</a></li>
+                {% endif %}
+                {% if 'username' in session %}
+                    <li><a href="{{ url_for('order_history') }}">Historial de Compras</a></li>
+                    <li><a href="{{ url_for('logout') }}">Salir</a></li>
+                    <li>Usuario: {{ session['username'] }}</li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+                    <li><a href="{{ url_for('register') }}">Registrarse</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <p class="flash-message">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tienda Virtual de Instrumentos Musicales</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Iniciar Sesión</h1>
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="username">Nombre de Usuario:</label>
+            <input type="text" name="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p>¿No tienes una cuenta? <a href="{{ url_for('register') }}">Crea una ahora</a></p>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout - TUNE FACTORY{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Checkout</h1>
+    {% if success %}
+        <h2>Compra realizada con éxito</h2>
+        <p>Fecha: {{ date }}</p>
+        <h3>Detalles de la compra:</h3>
+        <ul>
+            {% for item in items %}
+            <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} $</li>
+            {% endfor %}
+        </ul>
+        <h3>Total: {{ total }} $</h3>
+        <a href="{{ url_for('shop') }}" class="button-link">Volver a la Tienda</a>
+    {% else %}
+        <h2>La compra no pudo ser completada</h2>
+        <p>Hubo un error con su tarjeta. Por favor, intente de nuevo.</p>
+        <ul>
+            {% for item in items %}
+            <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} $</li>
+            {% endfor %}
+        </ul>
+        <h3>Total: {{ total }} $</h3>
+        <form action="{{ url_for('checkout') }}" method="POST">
+            <button type="submit" class="button-link">Intentar de Nuevo</button>
+        </form>
+        <a href="{{ url_for('cart') }}" class="button-link">Volver al Carrito</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Carrito</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>{{ item['name'] }}</td>
+                    <td>
+                        <form action="{{ url_for('update_cart') }}" method="POST">
+                            <input type="number" name="quantity" value="{{ item['quantity'] }}" min="1">
+                            <input type="hidden" name="index" value="{{ loop.index0 }}">
+                            <button type="submit">Actualizar</button>
+                        </form>
+                    </td>
+                    <td>{{ item['price'] }} $</td>
+                    <td>{{ item['price'] * item['quantity'] }} Bs.-</td>
+                    <td>
+                        <a href="{{ url_for('remove_from_cart', index=loop.index0) }}">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Total: {{ total }} $</h2>
+        <a href="{{ url_for('checkout') }}">Proceder al Pago</a>
+        <a href="{{ url_for('cancel_purchase') }}" class="button-link">Cancelar Compra</a>
+    </div>
+{% endblock %}

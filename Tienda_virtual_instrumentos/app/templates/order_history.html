@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Historial de Compras</h1>
+        <ul>
+            {% for order in orders %}
+            <li>
+                <p>Pedido ID: {{ order['_id'] }}</p>
+                <p>Fecha: {{ order['date'] }}</p>
+                <p>Total: {{ order['total'] }} $</p>
+                <ul>
+                    {% for item in order['items'] %}
+                    <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} $</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

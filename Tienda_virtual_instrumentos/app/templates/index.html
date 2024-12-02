@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <h1>Bienvenido a la Tienda Virtual de Instrumentos Musicales</h1>
+    <p>Inicie Sesion o entre a la Tienda para continuar</p>
+    <div class="buttons-container">
+        {% if session.get('role') == 'user' %}
+            <a class="button-link" href="{{ url_for('shop') }}">Ver como Cliente</a>
+        {% elif session.get('role') == 'admin' %}
+            <a class="button-link" href="{{ url_for('admin_dashboard') }}">Ver como Administrador</a>
+        {% endif %}
+    </div>
+{% endblock %}

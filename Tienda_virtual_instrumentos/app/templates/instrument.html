@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TUNE FACTORY{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ instrument['name'] }}</h1>
+        <p>{{ instrument['description'] }}</p>
+        <p>{{ instrument['price'] }} $</p>
+        <img src="{{ instrument['image_url'] }}" alt="{{ instrument['name'] }}">
+        <h2>Reseñas</h2>
+        <ul>
+            {% for review in reviews %}
+            <li>
+                <strong>{{ review['username'] }}</strong>: {{ review['rating'] }}/5
+                <p>{{ review['comment'] }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <h2>Añadir Reseña</h2>
+        <form action="{{ url_for('add_review_route', instrument_id=instrument['_id']) }}" method="POST">
+            <label for="rating">Calificación:</label>
+            <input type="number" name="rating" min="1" max="5" required>
+            <label for="comment">Comentario:</label>
+            <textarea name="comment" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+{% endblock %}
