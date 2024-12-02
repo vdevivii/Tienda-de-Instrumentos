@@ -11,20 +11,20 @@
         <h3>Detalles de la compra:</h3>
         <ul>
             {% for item in items %}
-            <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} $</li>
+            <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} Bs.</li>
             {% endfor %}
         </ul>
-        <h3>Total: {{ total }} $</h3>
+        <h3>Total: {{ total }} Bs.</h3>
         <a href="{{ url_for('shop') }}" class="button-link">Volver a la Tienda</a>
     {% else %}
         <h2>La compra no pudo ser completada</h2>
         <p>Hubo un error con su tarjeta. Por favor, intente de nuevo.</p>
         <ul>
             {% for item in items %}
-            <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} $</li>
+            <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} Bs.</li>
             {% endfor %}
         </ul>
-        <h3>Total: {{ total }} $</h3>
+        <h3>Total: {{ total }} Bs.</h3>
         <form action="{{ url_for('checkout') }}" method="POST">
             <button type="submit" class="button-link">Intentar de Nuevo</button>
         </form>

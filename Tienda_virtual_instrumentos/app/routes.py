@@ -106,7 +106,7 @@ def checkout():
         flash('No hay productos en el carrito')
         return redirect(url_for('cart'))
     
-    if request.method == 'POST':
+    if request.method == 'GET' or request.method == 'POST':
         card = get_card(session['username'])
         if not card:
             flash('No se ha registrado una tarjeta. Añada una tarjeta antes de proceder.')

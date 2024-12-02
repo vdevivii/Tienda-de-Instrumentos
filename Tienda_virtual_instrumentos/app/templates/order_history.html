@@ -10,10 +10,10 @@
             <li>
                 <p>Pedido ID: {{ order['_id'] }}</p>
                 <p>Fecha: {{ order['date'] }}</p>
-                <p>Total: {{ order['total'] }} $</p>
+                <p>Total: {{ order['total'] }} Bs.</p>
                 <ul>
                     {% for item in order['items'] %}
-                    <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} $</li>
+                    <li>{{ item['name'] }} - {{ item['quantity'] }} x {{ item['price'] }} Bs.</li>
                     {% endfor %}
                 </ul>
             </li>
